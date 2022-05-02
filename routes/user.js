@@ -50,7 +50,7 @@ router.get("/find/:id", verifyTokenAndAdmin, async (req, res) => {
     const user = await User.findById(req.params.id);
 
     const { password, ...others } = user._doc; //in order to not send pw, only others is being send (extracted password and others is the rest). _doc is needed since mongodb stores our documents(like user) in doc folder so cannot pass user directly in
-    res.status(200).json({ others });
+    res.status(200).json(others);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -67,7 +67,7 @@ router.get("/", verifyTokenAndAdmin, async (req, res) => {
 
     //pw is being send, need to adjust code!!!!!!!!!
 
-    res.status(200).json({ users });
+    res.status(200).json(users);
   } catch (err) {
     res.status(500).json(err);
   }
